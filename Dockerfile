@@ -7,8 +7,4 @@ RUN adduser -D abuilder \
  && mkdir -p /var/cache/distfiles \
  && chgrp abuild /var/cache/distfiles \
  && chmod g+w /var/cache/distfiles
-
-USER abuilder
 RUN abuild-keygen -a -i
-USER root
-RUN echo "su - abuilder" >> /root/.bash_history
