@@ -9,5 +9,10 @@ RUN adduser -D abuilder \
  && chgrp abuild /var/cache/distfiles \
  && chmod g+w /var/cache/distfiles \
  && abuild-keygen -a -i \
- && echo "abuild -F -r -d" >> /root/.bash_history"
+ && echo "abuild -F -r -d" >> /root/.bash_history
 
+USER abuilder
+WORKDIR /home/abuilder
+RUN abuild-keygen -a -i 
+USER root
+RUN echo "su - abuilder" >> /root/.bash_history
